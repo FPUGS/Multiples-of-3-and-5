@@ -44,4 +44,4 @@ You can solve the same code kata in multiple languages by creating more braches.
 
 ----
 
-![FPUG](http://www.quickmeme.com/img/fa/fae6dd8aefad8732c92d29c815e627b4df8d96d9ec7b00e18a6efbf7b491019c.jpg)
+![FPUG](http://i.imgur.com/hPTSxfA.png)
