@@ -1,5 +1,6 @@
 #lang racket
 
+(require racket/sequence)
 (provide multiple-summer)
 
 ;@ the plan:
@@ -9,10 +10,13 @@
 ;@ functional so this will be backwards
 
 (define (multiple-summer highnum [multlist [3 5]])
-  (define modfuncs (map (lambda (x) ;@ make some modulos
+  ;@ make some modulos
+  (define modfuncs (map (lambda (x)
                           (curry modulo x)) multlist))
-  
-  (+
-   
-   )
+
+  (+ (sequence-filter
+   (lambda (thisnum)
+     (equal? (+ (map modfuncs thisnum)) 0)) ;@ map each curried func to thisnum
+   (in-range 1 highnum)) ;@ generated sequence
+     ) ;@ sum the numbers we got
   )
