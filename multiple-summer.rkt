@@ -20,3 +20,5 @@
    (in-range 1 highnum)) ;@ generated sequence
      ) ;@ sum the numbers we got
   )
+
+;@ (for/sum ([thismod modfuncs]) (thismod thisnum))
