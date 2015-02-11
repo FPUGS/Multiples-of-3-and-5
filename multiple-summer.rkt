@@ -9,8 +9,7 @@
 ;@ functional so this will be backwards
 
 (define (multiple-summer highnum [multlist [3 5]])
-  ;@ problem: this doesn't unquote its args
-  (define modfuncs (map (lambda x ;@ make some modulos
+  (define modfuncs (map (lambda (x) ;@ make some modulos
                           (curry modulo x)) multlist))
   
   (+
