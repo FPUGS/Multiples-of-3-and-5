@@ -15,15 +15,17 @@
   (define modfuncs (map (lambda (x)
                           (curry modulo x)) multlist))
 
-  (+ (sequence-filter
-   (lambda (thisnum)
-     (equal? (for/sum ([thismod modfuncs])
-               (thismod thisnum)) ;@ run each curried func on thisnum, sum
-                                  ;result
-             0)
-   (in-range 1 highnum)) ;@ generated sequence
-     ) ;@ sum the numbers we got
+  (sequence-fold + 0
+                 (sequence-filter
+                  (lambda (thisnum)
+                    (equal? (apply-funcs-sum modfuncs thisnum) 0))
+                  (in-range 1 highnum)) ;@ generated sequence
+                 ) ;@ sum the numbers we got
   )
-)
 
-;@ (for/sum ([thismod modfuncs]) (thismod thisnum))
+(define (apply-funcs-sum funclist onearg) ;@ applies a list of functions to an
+                                   ;argument, instead of the other way around,
+                                   ;then sums results
+  (for/sum ([thisfunc funclist])
+    (funclist onearg))
+  )
