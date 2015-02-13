@@ -13,7 +13,7 @@
   (define multlist '(3 5))
   ;@ make some modulos
   (define modfuncs (map (lambda (x)
-                          (curry modulo x)) multlist))
+                          (curryr modulo x)) multlist))
 
   (sequence-fold + 0
                  (sequence-filter
