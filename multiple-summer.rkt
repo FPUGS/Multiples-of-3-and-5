@@ -27,5 +27,5 @@
                                    ;argument, instead of the other way around,
                                    ;then sums results
   (for/sum ([thisfunc funclist])
-    (funclist onearg))
+    (thisfunc onearg))
   )
