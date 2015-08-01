@@ -1,29 +1,23 @@
 #lang racket
 
 (provide multiple-printer)
+(provide multiple-modulos)
+(require racket/sequence)
 
-(define (multiple-printer modulos numargs)
+;@ A function that maps each of the functions in fs to each of the of the inputs
+; in xs.
+(define (tensor-map fs xs) (map (λ (f) (map f xs)) fs))
+
+;@ A function that computes modulos of different moduli to different arguments.
+(define (multiple-modulos modulos numargs)
   ; (define multlist '(3 5))
 
-  (define modfuncs (map (lambda (x) (curry (modulo x))) modulos))
-  ; (map (lambda (thisarg)
-  ;        (map modfuncs (lambda (thisfunc)
-  ;                        (thisfunc thisarg)
-  ;                        )
-  ;             (list numargs))
-  ;        ))
-  ; (define (cinnabon-map fs xs) (for/list ([f (in-list fs)]) (map f xs)))
-  (define (cinnabon-map fs xs) (map (λ (f) (map f xs)) fs)) 
-  (cinnabon-map modfuncs numargs)
-  
-  ; (map (lambda (thisfunc)
-  ;        (map thisfunc (list numargs))
-  ;        ) (list modfuncs))
+  ; Create single-input curried modulos to apply to each of the args
+  (define modfuncs (map (lambda (x) (curryr modulo x)) modulos))
 
-  ;(for/list ([thisfunc (in-list modfuncs)])
-  ;  (displayln thisfunc)
-  ;  (map thisfunc (list numargs))
-  ;  )
+  (tensor-map modfuncs numargs)
+
+  )
 
 ;@ A function that takes a list of two lists and zips the two lists together
 ; into a longer one.
