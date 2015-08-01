@@ -12,17 +12,12 @@
   (define modfuncs (map (lambda (x) (curryr modulo x)) modulos))
   (tensor-map modfuncs numargs))
 
-;@ A function that takes a list of two lists and zips the two lists together
-; into a longer one.
-(define (zip-2 listoflists)
-  (car (map list (car listoflists) (cadr listoflists))))
-
 ;@ finally the main function. Takes as input the higher number N in the range
 ; from 1 to N.
 (define (multiple-summer highnum)
   (apply + (filter (lambda (seqnum) ; since we need the sequence, map over it
          ; local binding for the modulos of that sequence val
-         (let ([modpair (zip-2 (multiple-modulos '(3 5) (list seqnum)))])
+         (let ([modpair (map car (multiple-modulos '(3 5) (list seqnum)))])
            (cond ; three conditions testing the modulo result
              [(= (car modpair) 0) #t]
              [(= (cadr modpair) 0) #t]
