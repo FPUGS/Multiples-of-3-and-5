@@ -1,8 +1,7 @@
 #lang racket
-
-(provide multiple-printer)
-(provide multiple-modulos)
 (require racket/sequence)
+(provide multiple-printer)
+
 
 ;@ A function that maps each of the functions in fs to each of the of the inputs
 ; in xs.
@@ -10,34 +9,31 @@
 
 ;@ A function that computes modulos of different moduli to different arguments.
 (define (multiple-modulos modulos numargs)
-  ; (define multlist '(3 5))
-
   ; Create single-input curried modulos to apply to each of the args
   (define modfuncs (map (lambda (x) (curryr modulo x)) modulos))
-
-  (tensor-map modfuncs numargs)
-
-  )
+  (tensor-map modfuncs numargs))
 
 ;@ A function that takes a list of two lists and zips the two lists together
 ; into a longer one.
-(define zip-2 (lambda (listoflists) (map list (car listoflists) (cadr listoflists))))
+(define (zip-2 listoflists)
+  (car (map list (car listoflists) (cadr listoflists))))
 
+;@ finally the main function. Takes as input the higher number N in the range
+; from 1 to N.
 (define (multiple-printer highnum)
-  
-  (map (lambda (modpair)
-  ; produces lists for each modulus with the modulo of each number in a range
-         ; from 1 through highnum
-         (cond
-           [(= (car modpair) (cadr modpair) 0) (displayln "CracklePop") modpair]
-           [(= (car modpair) 0) (displayln "Crackle")]
-           [(= (cadr modpair) 0) (displayln "Pop")]
-           [else (displayln modpair)])
-         ) (zip-2
-            (multiple-modulos '(3 5)
-                              (sequence->list (in-range 1 (add1 highnum))))))
-  
-  
-  )
+  ; void here to hide returned values
+  (void (map (lambda (seqnum) ; since we need the sequence, map over it
+               ; local binding for the modulos of that sequence val
+         (let ([modpair (zip-2 (multiple-modulos '(3 5) (list seqnum)))])
+           (cond ; three conditions testing the modulo result
+             [(= (car modpair) (cadr modpair) 0) (displayln "CracklePop")]
+             [(= (car modpair) 0) (displayln "Crackle")]
+             [(= (cadr modpair) 0) (displayln "Pop")]
+             [else (displayln seqnum)])))
+             ; convert sequence to list so map can be called. Sequences have
+             ; lots of nice properties but here I just want to make an
+             ; increasing list of numbers without typing too much.
+             (sequence->list (in-range 1 (add1 highnum))))))
 
-
+; Evaluate the above with 100 as asked.
+(multiple-printer 100)
