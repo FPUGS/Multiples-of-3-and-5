@@ -5,7 +5,7 @@
 
 ;@ A function that maps each of the functions in fs to each of the of the inputs
 ; in xs.
-(define (tensor-map fs xs) (map (λ (f) (map f xs)) fs))
+(define (tensor-map fs xs) (map (lambda (f) (map f xs)) fs))
 
 ;@ A function that computes modulos of different moduli to different arguments.
 (define (multiple-modulos modulos numargs)
