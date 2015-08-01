@@ -24,9 +24,18 @@
 (define zip-2 (lambda (listoflists) (map list (car listoflists) (cadr listoflists))))
 
 (define (multiple-printer highnum)
+  
+  (map (lambda (modpair)
   ; produces lists for each modulus with the modulo of each number in a range
-  ; from 1 through highnum
-  (zip-2 (multiple-modulos '(3 5) (sequence->list (in-range 1 (add1 highnum)))))
+         ; from 1 through highnum
+         (cond
+           [(= (car modpair) (cadr modpair) 0) (displayln "CracklePop") modpair]
+           [(= (car modpair) 0) (displayln "Crackle")]
+           [(= (cadr modpair) 0) (displayln "Pop")]
+           [else (displayln modpair)])
+         ) (zip-2
+            (multiple-modulos '(3 5)
+                              (sequence->list (in-range 1 (add1 highnum))))))
   
   
   )
