@@ -5,10 +5,9 @@
 
 > Find the sum of all the multiples of 3 or 5 below 1000.
 
-----
 ## Rules
 Solve this using any FP lang you want: Haskell, F#, Closure, Ocaml, Scala, Common Lisp, D, Erlang, etc.
-----
+
 
 ## To submit your solution
 
