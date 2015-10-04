@@ -1,4 +1,5 @@
 # Multiples of Three and Five
+[![Join the chat at https://gitter.im/FPUGS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/FPUGS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Reference
 > If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, > 5, 6 and 9. The sum of these multiples is 23.
