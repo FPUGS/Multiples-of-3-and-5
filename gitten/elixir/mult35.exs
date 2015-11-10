@@ -6,3 +6,4 @@ defmodule Mult35 do
   Enum.sum( for x <- Enum.to_list(0..n-1), rem(x, 3) == 0 || rem(x, 5) == 0, do: x )
   end
 end
+
