@@ -1,0 +1,19 @@
+
+* Compiling
+from iex:
+
+#+begin_src elixir
+iex> c "mult35.exs"
+#+end_src
+
+* running
+pass a number n to the function to sum over the range 1 to n.
+
+with no argument, function defaults to a range of 0 to 1000
+
+#+begin_src elixir
+iex> mult35.sum 10
+23 #result
+#+end_src
+
+
