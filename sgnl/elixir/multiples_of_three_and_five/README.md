@@ -1,4 +1,0 @@
-MultiplesOfThreeAndFive
-=======================
-
-** TODO: Add description **
